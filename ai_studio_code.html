@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simarjeet Kaur — Student Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --primary-light: #e0e7ff;
+      --accent: #10b981;
+      --border: #e2e8f0;
+      --shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+      background-attachment: fixed;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, 92%); margin: auto; }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.5px; }
+    .brand span { color: var(--primary); }
+    .nav-links { display: flex; gap: 26px; color: var(--muted); font-size: 0.92rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--primary); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 22px; border-radius: 12px; font-weight: 700;
+      font-size: 0.92rem; transition: all 0.2s ease; cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: #fff; background: var(--primary); box-shadow: 0 8px 20px rgba(99, 102, 241, 0.25); }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-secondary { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+    .hero {
+      padding: 85px 0 65px;
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      align-items: center;
+      gap: 50px;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--primary); background: var(--primary-light);
+      padding: 6px 14px; border-radius: 999px;
+      font-size: 0.82rem; font-weight: 800; text-transform: uppercase;
+    }
+    .status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25); }
+    h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      line-height: 1.12; letter-spacing: -1.8px; margin: 18px 0; font-weight: 800;
+    }
+    h1 span {
+      background: linear-gradient(135deg, var(--primary), #818cf8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .intro { max-width: 580px; color: var(--muted); font-size: 1.08rem; margin-bottom: 28px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .profile-wrap { display: flex; justify-content: center; }
+    .profile-card {
+      width: min(100%, 340px); padding: 16px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 26px; box-shadow: var(--shadow);
+    }
+    .profile-photo { width: 100%; aspect-ratio: 1 / 1.05; border-radius: 18px; object-fit: cover; display: block; }
+    .profile-caption { display: flex; justify-content: space-between; align-items: center; padding: 14px 6px 4px; }
+    section { padding: 60px 0; }
+    .section-heading { margin-bottom: 30px; }
+    .section-heading .kicker { color: var(--primary); text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.78rem; font-weight: 800; }
+    h2 { font-size: clamp(1.8rem, 3.2vw, 2.5rem); letter-spacing: -1px; margin-top: 6px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 26px;
+      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.03);
+    }
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; }
+    .quick-facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 10px; }
+    .fact { background: #f8fafc; border: 1px solid var(--border); border-radius: 14px; padding: 14px; }
+    .fact small { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; font-weight: 700; }
+    .fact strong { display: block; margin-top: 3px; font-size: 0.96rem; }
+    .skills-category { margin-bottom: 22px; }
+    .skills-category h4 { font-size: 0.95rem; color: var(--muted); margin-bottom: 12px; font-weight: 700; text-transform: uppercase; }
+    .skills-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-pill { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px; font-size: 0.88rem; font-weight: 600; }
+    .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .project-card { display: flex; flex-direction: column; overflow: hidden; padding: 0; }
+    .project-banner { height: 140px; display: grid; place-items: center; font-size: 3rem; background: linear-gradient(135deg, #eef2ff, #e0e7ff); }
+    .project-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+    .project-body h3 { font-size: 1.15rem; margin-bottom: 8px; }
+    .project-body p { color: var(--muted); font-size: 0.92rem; margin-bottom: 18px; flex: 1; }
+    .project-tag { align-self: flex-start; font-size: 0.76rem; font-weight: 700; color: var(--primary); background: var(--primary-light); padding: 4px 10px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; }
+    .education-card { display: flex; gap: 20px; align-items: center; }
+    .edu-icon { font-size: 2rem; background: var(--primary-light); width: 64px; height: 64px; display: grid; place-items: center; border-radius: 16px; flex-shrink: 0; }
+    .contact-card { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #fff; border-radius: 26px; padding: 45px; display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 30px; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; }
+    .contact-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; padding: 12px 18px; border-radius: 12px; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
+    .contact-btn:hover { background: var(--primary); }
+    footer { padding: 35px 0; text-align: center; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--border); margin-top: 40px; }
+    #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 999px; font-size: 0.88rem; font-weight: 600; transition: transform .3s ease; z-index: 1000; }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; padding-top: 40px; text-align: center; }
+      .about-grid, .contact-card, .project-grid { grid-template-columns: 1fr; }
+      .contact-links { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const student = {
+      name: "Simarjeet Kaur",
+      shortName: "Simarjeet",
+      course: "B.Tech in Computer Science & Engineering",
+      semester: "1st Semester",
+      college: "Chandigarh Group of Colleges (CGC)",
+      city: "Punjab, India",
+      email: "simarj.kaur8790@gmail.com",
+      about: "Hello! I am a 1st-semester Computer Science undergraduate passionate about building creative technology solutions. I am actively learning C programming, web development with HTML/CSS, and problem-solving.",
+      photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=85",
+      skills: [
+        { category: "Programming & Web", items: ["C Programming", "HTML5", "CSS3", "JavaScript (Basics)"] },
+        { category: "Concepts & Tools", items: ["Problem Solving", "VS Code", "Git & GitHub Basics", "Linux Basics"] },
+        { category: "Soft Skills", items: ["Active Learning", "Communication", "Team Collaboration"] }
+      ],
+      projects: [
+        { icon: "🌐", title: "Personal Portfolio Website", description: "A responsive website showcasing my bio, academic credentials, and coding projects.", tag: "HTML · CSS · JS" },
+        { icon: "🧮", title: "Arithmetic Calculator in C", description: "A terminal-based calculator implementing control structures and functions in C.", tag: "C Language" },
+        { icon: "📚", title: "Student Record Management", description: "A structured C program to create, display, and search student information records.", tag: "C & File I/O" }
+      ],
+      education: "Bachelor of Technology — CSE",
+      graduation: "Expected Graduation: 2028",
+      github: "https://github.com/",
+      linkedin: "https://www.linkedin.com/"
+    };
+  </script>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="#home"><span>✦</span> <span id="nav-brand">Simarjeet.dev</span></a>
+        <div class="nav-links">
+          <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#education">Education</a><a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" id="home">
+      <div>
+        <div class="eyebrow"><span class="status-dot"></span> <span id="hero-badge">1st Semester · CSE</span></div>
+        <h1>Hi, I'm <span id="hero-name">Simarjeet</span>.<br />Aspiring Engineer & Developer.</h1>
+        <p class="intro" id="hero-intro"></p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">Explore Projects ↗</a>
+          <button class="btn btn-secondary" onclick="copyEmail()">📋 Copy Email</button>
+        </div>
+      </div>
+      <div class="profile-wrap">
+        <div class="profile-card">
+          <img class="profile-photo" id="profile-img" src="" alt="Simarjeet Kaur" />
+          <div class="profile-caption">
+            <div><strong id="caption-name"></strong><small id="caption-course"></small></div>
+            <span style="font-size: 1.4rem;">👩‍💻</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-heading"><span class="kicker">About Me</span><h2>Curious Mind. Continuous Learner.</h2></div>
+      <div class="about-grid">
+        <article class="card"><h3 style="margin-bottom: 12px;">👋 Welcome!</h3><p id="about-description" style="color: var(--muted);"></p></article>
+        <article class="card"><h3 style="margin-bottom: 10px;">✨ Quick Facts</h3>
+          <div class="quick-facts">
+            <div class="fact"><small>Degree</small><strong id="fact-degree"></strong></div>
+            <div class="fact"><small>Status</small><strong id="fact-status"></strong></div>
+            <div class="fact"><small>Institution</small><strong id="fact-college"></strong></div>
+            <div class="fact"><small>Location</small><strong id="fact-city"></strong></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-heading"><span class="kicker">Abilities</span><h2>Skills & Toolkit</h2></div>
+      <div class="card" id="skills-container"></div>
+    </section>
+
+    <section id="projects">
+      <div class="section-heading"><span class="kicker">Portfolio</span><h2>Featured Projects</h2></div>
+      <div class="project-grid" id="projects-grid"></div>
+    </section>
+
+    <section id="education">
+      <div class="section-heading"><span class="kicker">Background</span><h2>Academic Journey</h2></div>
+      <article class="card education-card">
+        <div class="edu-icon">🎓</div>
+        <div><h3 id="edu-degree"></h3><p id="edu-college" style="font-weight: 600;"></p><p id="edu-year" style="color: var(--muted); font-size: 0.9rem;"></p></div>
+      </article>
+    </section>
+
+    <section id="contact">
+      <div class="contact-card">
+        <div>
+          <span style="color: #818cf8; font-weight: 800; font-size: 0.8rem; text-transform: uppercase;">Get In Touch</span>
+          <h2 style="color: #fff;">Let's build together.</h2>
+          <p style="color: #94a3b8;">Have an idea or want to collaborate? Feel free to reach out anytime!</p>
+        </div>
+        <div class="contact-links" id="contact-buttons"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container">Crafted with curiosity by <strong id="footer-author">Simarjeet Kaur</strong> · <span id="footer-year"></span></div></footer>
+  <div id="toast">Email copied to clipboard!</div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    $("nav-brand").textContent = `${student.shortName}.dev`;
+    $("hero-badge").textContent = `${student.semester} · CSE`;
+    $("hero-name").textContent = student.shortName;
+    $("hero-intro").textContent = student.about;
+    $("about-description").textContent = student.about;
+    $("profile-img").src = student.photo;
+    $("caption-name").textContent = student.name;
+    $("caption-course").textContent = student.course;
+    $("fact-degree").textContent = "B.Tech CSE";
+    $("fact-status").textContent = student.semester;
+    $("fact-college").textContent = student.college;
+    $("fact-city").textContent = student.city;
+    $("edu-degree").textContent = student.education;
+    $("edu-college").textContent = student.college;
+    $("edu-year").textContent = student.graduation;
+    $("footer-author").textContent = student.name;
+    $("footer-year").textContent = new Date().getFullYear();
+    $("skills-container").innerHTML = student.skills.map(g => `<div class="skills-category"><h4>${g.category}</h4><div class="skills-wrap">${g.items.map(i => `<span class="skill-pill">${i}</span>`).join("")}</div></div>`).join("");
+    $("projects-grid").innerHTML = student.projects.map(p => `<article class="card project-card"><div class="project-banner">${p.icon}</div><div class="project-body"><h3>${p.title}</h3><p>${p.description}</p><span class="project-tag">${p.tag}</span></div></article>`).join("");
+    $("contact-buttons").innerHTML = `<a href="mailto:${student.email}" class="contact-btn">✉ Email Me</a><a href="${student.github}" target="_blank" class="contact-btn">🐙 GitHub</a><a href="${student.linkedin}" target="_blank" class="contact-btn">💼 LinkedIn</a>`;
+    function copyEmail() {
+      navigator.clipboard.writeText(student.email).then(() => {
+        const toast = $("toast");
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2400);
+      });
+    }
+  </script>
+</body>
+</html>
